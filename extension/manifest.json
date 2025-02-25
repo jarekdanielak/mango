@@ -1,7 +1,7 @@
 {
   "name": "Box Breathing",
-  "description": "Box breathing in the browser.",
-  "version": "1.0",
+  "description": "Simple box breathing assistance at your fingertips.",
+  "version": "1.1",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html",
