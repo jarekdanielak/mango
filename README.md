@@ -2,9 +2,7 @@
 
 Box breathing Google Chrome extension. Mango included. 🥭
 
-<p align="center">
 <img src="preview.gif" />
-</p>
 
 ### Use
 
@@ -32,5 +30,5 @@ npm run build
 npm run zip
 ```
 
-Learn how to [publish to Chrome Web Store](https://developer.chrome.com/docs/webstore/publish)
+Learn how to [publish to Chrome Web Store](https://developer.chrome.com/docs/webstore/publish).
 
