@@ -3,7 +3,7 @@
 Box breathing Google Chrome extension. Mango included. 🥭
 
 <p align="center">
-<img src="preview.png" />
+<img src="preview.gif" />
 </p>
 
 ### Use
