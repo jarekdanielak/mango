@@ -1,8 +1,8 @@
 <script>
   // @ts-nocheck
 
-  let { running } = $props();
-  let colorToggle = $state(false);
+  let { running, interval } = $props();
+  let colorSwap = $state(false);
 
   let rectProps = {
     x: 10,
@@ -14,25 +14,26 @@
   };
 
   function handleAnimationIteration() {
-    colorToggle = !colorToggle;
+    colorSwap = !colorSwap;
   }
 
   function handleAnimationCancel() {
-    colorToggle = false;
+    colorSwap = false;
   }
 </script>
 
 <rect
   class="square stroke--secondary"
-  class:stroke--secondary={!colorToggle}
-  class:stroke--primary={colorToggle}
+  class:stroke--secondary={!colorSwap}
+  class:stroke--primary={colorSwap}
   {...rectProps}
 />
 <rect
   class="square square--top"
-  class:stroke--primary={!colorToggle}
-  class:stroke--secondary={colorToggle}
+  class:stroke--primary={!colorSwap}
+  class:stroke--secondary={colorSwap}
   class:animate={running}
+  style="animation-duration: {interval}s;"
   {...rectProps}
   onanimationiteration={handleAnimationIteration}
   onanimationcancsel={handleAnimationCancel}
@@ -58,7 +59,9 @@
   }
 
   .animate {
-    animation: animate 16s linear infinite;
+    animation-name: animate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 
   @keyframes animate {
