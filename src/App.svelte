@@ -3,26 +3,21 @@
   import Button from "./lib/Button.svelte";
   import Timer from "./lib/Timer.svelte";
   import Interval from "./lib/Interval.svelte";
-  import { parse } from "svelte/compiler";
 
   let running = $state(false);
-  let interval = $state(16);
+  let interval = $state(4);
   let error = $state(false);
 
   function toggle() {
-    if (interval === 0) {
+    console.log("Toggle running state:", interval);
+
+    // @ts-ignore
+    const parsedInterval = parseInt(interval);
+    if (isNaN(parsedInterval) || interval === 0) {
       handleError();
       return;
     }
     running = !running;
-  }
-
-  function handleIntervalChange(value) {
-    if (parseInt(value) < 0 || isNaN(parseInt(value))) {
-      interval = 0;
-    } else {
-      interval = parseInt(value) * 4;
-    }
   }
 
   function handleError() {
@@ -48,12 +43,12 @@
         😓
       </text>
     {:else}
-      <Button {running} {toggle} />
+      <Button {running} {interval} {toggle} />
     {/if}
   </svg>
   <div class="controls">
     <Timer {running} {handleError} />
-    <Interval {running} handleChange={handleIntervalChange} />
+    <Interval {running} bind:interval />
   </div>
 </div>
 

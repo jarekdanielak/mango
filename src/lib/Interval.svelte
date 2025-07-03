@@ -1,17 +1,11 @@
 <script>
-  let { running, handleChange } = $props();
-
-  let value = $state(4);
-
-  $effect(() => {
-    handleChange(value);
-  });
+  let { running, interval = $bindable() } = $props();
 </script>
 
 <div class="wrapper">
   {#if !running}
     <div>interval</div>
-    <input id="interval" type="text" bind:value />
+    <input id="interval" type="text" bind:value={interval} />
     <div>seconds</div>
   {/if}
 </div>

@@ -33,7 +33,7 @@
   class:stroke--primary={!colorSwap}
   class:stroke--secondary={colorSwap}
   class:animate={running}
-  style="animation-duration: {interval}s;"
+  style="animation-duration: {interval * 4}s;"
   {...rectProps}
   onanimationiteration={handleAnimationIteration}
   onanimationcancsel={handleAnimationCancel}
