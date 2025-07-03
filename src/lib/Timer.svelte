@@ -1,36 +1,41 @@
 <script>
   let { running, handleError } = $props();
 
+  let value = $state("2");
   let interval = $state(null);
 
-  let value = $state(2);
-  let seconds = $derived(value * 60);
-
+  let seconds = $derived(parseInt(value) * 60);
   let displayMinutes = $derived(Math.floor(seconds / 60));
   let displaySeconds = $derived(seconds % 60);
 
   $effect(() => {
-    if (running && !interval) {
-      startCountdown();
+    if (!running) {
+      seconds = parseInt(value) * 60;
+      clearTimer();
+      return;
+    }
+
+    if (!interval) {
+      if (parseInt(value) < 0) {
+        return handleError();
+      }
+      startTimer();
     }
   });
 
-  $effect(() => {
-    if (running && (value < 0 || isNaN(value))) {
-      handleError();
-    }
-  });
-
-  function startCountdown() {
-    clearInterval(interval);
-
+  function startTimer() {
     interval = setInterval(() => {
       if (seconds > 0) {
         seconds -= 1;
       } else {
-        clearInterval(interval);
+        clearTimer();
       }
     }, 1000);
+  }
+
+  function clearTimer() {
+    clearInterval(interval);
+    interval = null;
   }
 </script>
 
